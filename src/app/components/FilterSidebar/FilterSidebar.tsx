@@ -6,28 +6,28 @@ import styles from './FilterSidebar.module.css';
 export default function FilterSidebar() {
   return (
     <aside className={styles.sidebar}>
-      <h2>Filter Cars</h2>
+      <h2>Filtrar Carros</h2>
 
-      <label htmlFor="search">Search</label>
+      <label htmlFor="search">Pesquisar</label>
       <input
         id="search"
         type="text"
-        placeholder="Make, model..."
+        placeholder="Marca, modelo..."
       />
 
-      <h3>Category</h3>
+      <h3>Categoria</h3>
       <div className={styles.categoryList}>
         <label>
           <input type="checkbox" />
-          Luxury
+          Luxo
         </label>
         <label>
           <input type="checkbox" />
-          Sports
+          Esportivo
         </label>
         <label>
           <input type="checkbox" />
-          Electric
+          Elétrico
         </label>
         <label>
           <input type="checkbox" />
@@ -35,9 +35,9 @@ export default function FilterSidebar() {
         </label>
       </div>
 
-      {/* Você pode adicionar Price Range, Year, etc. */}
+      
 
-      <button className={styles.applyButton}>Apply Filters</button>
+      <button className={styles.applyButton}>Aplicar Filtros</button>
     </aside>
   );
 }
