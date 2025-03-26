@@ -1,0 +1,47 @@
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 400px; /* ajuste conforme desejar */
+  background-color: #ccc; /* fundo cinza para simular o slide */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Área interna com fundo preto */
+.heroSlide {
+  background-color: #000;
+  color: #fff;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Logo grande */
+.heroLogo {
+  width: 120px; /* ajuste conforme o design */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.heroSubtitle {
+  margin-bottom: 1rem;
+}
+
+.heroButton {
+  background-color: #0070f3; 
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}

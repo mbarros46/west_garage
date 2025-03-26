@@ -1,0 +1,56 @@
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 280px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .imageContainer {
+    width: 100%;
+    height: 160px;
+    background-color: #f0f0f0;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .price {
+    font-weight: bold;
+    margin: 0.5rem 0;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto; /* empurra os botões para baixo */
+  }
+  
+  .buttonGroup button {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    background-color: #0070f3;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 4px;
+  }
+  
+  .buttonGroup button:nth-child(2) {
+    background-color: #555;
+  }
+  
