@@ -8,9 +8,9 @@ export function Footer() {
     <footer className={styles.footer}>
       <p>© 2025 Luxury Motors. All rights reserved.</p>
       <div className={styles.footerLinks}>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Contact</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Termos</a>
+        <a href="#">Contato</a>
       </div>
     </footer>
   );
