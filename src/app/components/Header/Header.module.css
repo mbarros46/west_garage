@@ -1,9 +1,14 @@
+/* Header */
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 2rem;
-  background-color: #fff; 
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .logoContainer {
@@ -12,19 +17,52 @@
   gap: 0.5rem;
 }
 
-.logoText {
-  font-weight: bold;
-  font-size: 1.25rem;
-  color: #333;
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-.navLinks {
+.logo:hover {
+  color: #2563eb;
+}
+
+.logoBlue {
+  color: #2563eb;
+}
+
+.nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 16px;
+  align-items: center;
 }
 
-.navLinks a {
+.navLink {
+  font-size: 14px;
+  color: #4a4a4a;
   text-decoration: none;
-  color: #000;
-  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navLink:hover {
+  color: #2563eb;
+}
+
+.active {
+  color: #2563eb;
+}
+
+.signInButton {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signInButton:hover {
+  background-color: #1E40AF;
 }

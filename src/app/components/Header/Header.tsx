@@ -1,21 +1,30 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
-import styles from './Header.module.css';
+import React from "react";
+import Link from "next/link";
+import styles from "./Header.module.css";
 
 export function Header() {
   return (
     <header className={styles.header}>
-      {/* Texto do site sem logo */}
-      <div className={styles.logoText}>West Garage</div>
-
-      {/* Menu de navegação */}
-      <nav className={styles.navLinks}>
-        <Link href="/browse">Ver Carros</Link>
-        <Link href="/about">Sobre Nós</Link>
-        <Link href="/sell">Vender seu Carro</Link>
-        <Link href="/signin">Entrar</Link>
+      <div className={styles.logoContainer}>
+        <Link href="/">
+          <h1 className={styles.logo}>
+            <span className={styles.logoBlue}>West</span> Garage
+          </h1>
+        </Link>
+      </div>
+      <nav className={styles.nav}>
+        <Link href="/sell-your-car" className={styles.navLink}>
+          Vender seu Carro
+        </Link>
+        <Link href="/browse-cars" className={styles.navLink}>
+          Ver Carros
+        </Link>
+        <Link href="/about" className={`${styles.navLink} ${styles.active}`}>
+          Sobre Nós
+        </Link>
+        <button className={styles.signInButton}>Sign In</button>
       </nav>
     </header>
   );

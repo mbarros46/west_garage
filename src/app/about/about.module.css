@@ -1,0 +1,272 @@
+/* Wrapper geral */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .logo:hover {
+    color: #2563eb;
+  }
+  
+  .logoBlue {
+    color: #2563eb;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .navLink {
+    font-size: 14px;
+    color: #4a4a4a;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .navLink:hover {
+    color: #2563eb;
+  }
+  
+  .active {
+    color: #2563eb;
+  }
+  
+  .signInButton {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .signInButton:hover {
+    background-color: #1E40AF;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 450px;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .heroImage {
+    /* A Image do Next.js controla o posicionamento, portanto, estilos extras podem ser adicionados aqui se necessário */
+  }
+  
+  .heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .heroContent {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    color: #ffffff;
+    padding: 0 16px;
+  }
+  
+  .heroContent h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .heroContent p {
+    max-width: 600px;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .heroHighlight {
+    color: #2563eb;
+  }
+  
+  /* Main Content */
+  .main {
+    flex: 1;
+    padding: 40px 16px;
+  }
+  
+  /* Our Story */
+  .storySection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  
+  .storyText {
+    flex: 1 1 400px;
+    max-width: 600px;
+    color: #333;
+  }
+  
+  .storyText h2 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: #222;
+  }
+  
+  .storyText p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  
+  .storyImage {
+    flex: 1 1 300px;
+    position: relative;
+    height: 400px;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Our Values */
+  .valuesSection {
+    padding: 40px 0;
+    text-align: center;
+    background-color: #f8fafc;
+  }
+  
+  .valuesSection h2 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    color: #222;
+  }
+  
+  .valuesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+  }
+  
+  .valueCard {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    max-width: 300px;
+    flex: 1 1 280px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .valueCard:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .iconContainer {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(37, 99, 235, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: #2563eb;
+  }
+  
+  .valueCard h3 {
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+    color: #222;
+  }
+  
+  .valueCard p {
+    font-size: 0.875rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #ffffff;
+    border-top: 1px solid #eaeaea;
+    padding: 24px 16px;
+  }
+  
+  .footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .footerContent p {
+    font-size: 0.875rem;
+    color: #777;
+  }
+  
+  .footerLinks {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .footerLinks a {
+    font-size: 0.875rem;
+    color: #777;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footerLinks a:hover {
+    color: #2563eb;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .storySection {
+      flex-direction: column;
+    }
+  
+    .footerContent {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+  }
+  
