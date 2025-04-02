@@ -24,7 +24,9 @@ export function Header() {
         <Link href="/about" className={`${styles.navLink} ${styles.active}`}>
           Sobre Nós
         </Link>
-        <button className={styles.signInButton}>Sign In</button>
+        <Link href="/signin">
+          <button className={styles.signInButton}>Sign In</button>
+        </Link>
       </nav>
     </header>
   );
