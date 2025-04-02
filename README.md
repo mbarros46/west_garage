@@ -22,6 +22,6 @@ West Garage é um projeto inovador desenvolvido em Next.js para exibição e ger
 🔹 Login e autenticação de usuários
 
 
-👥 Autore
-Desenvolvido por Miguel Barros.
+👥 AutoreS
+Desenvolvido por Miguel Barros E Pedro Valentim.
 📩 Entre em contato para sugestões e melhorias!
