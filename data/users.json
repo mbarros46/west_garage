@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "1744245660766",
+      "name": "miguel barros",
+      "email": "rm556652@fiap.com.br",
+      "password": "$2a$10$6BEyd6pUNwzo.2shwi.VdO7KCnwXxeFOog61PKOs7E.sWMiQ29kEK",
+      "role": "user"
+    }
+  ]
+}
