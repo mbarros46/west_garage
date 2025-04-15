@@ -39,22 +39,22 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             );
         
-        // Configuração para permitir o acesso ao console H2
-        http.headers(headers -> headers.frameOptions().disable());
+        
+        http.headers(headers -> headers.disable());
+
         
         return http.build();
     }
 
-    // Bean para configurar o CORS
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3001")); // Permite frontend em 3000 ou 3001
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3001")); 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-        configuration.setAllowCredentials(true); // Permite credenciais (cookies, etc.)
+        configuration.setAllowCredentials(true); 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Aplica a configuração a todos os paths
+        source.registerCorsConfiguration("/**", configuration); 
         return source;
     }
 
