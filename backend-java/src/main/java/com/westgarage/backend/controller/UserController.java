@@ -25,15 +25,16 @@ public class UserController {
     public ResponseEntity<Page<User>> listUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "username") String sortBy,
+            @RequestParam(defaultValue = "name") String sortBy,
             @RequestParam(defaultValue = "asc") String direction,
-            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email,
             @RequestParam(required = false) String role) {
         
         Sort.Direction sortDirection = Sort.Direction.fromString(direction.toUpperCase());
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortBy));
         
-        Page<User> users = userService.findUsers(pageable, username, role);
+        Page<User> users = userService.findUsers(pageable, name, email, role);
         return ResponseEntity.ok(users);
     }
 } 

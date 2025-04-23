@@ -15,12 +15,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Cacheable(value = "users", key = "#pageable.pageNumber + '_' + #pageable.pageSize + '_' + #username + '_' + #role")
-    public Page<User> findUsers(Pageable pageable, String username, String role) {
-        if (username != null && role != null) {
-            return userRepository.findByUsernameContainingIgnoreCaseAndRole(username, role, pageable);
-        } else if (username != null) {
-            return userRepository.findByUsernameContainingIgnoreCase(username, pageable);
+    @Cacheable(value = "users", key = "#pageable.pageNumber + '_' + #pageable.pageSize + '_' + #name + '_' + #email + '_' + #role")
+    public Page<User> findUsers(Pageable pageable, String name, String email, String role) {
+        if (name != null && role != null) {
+            return userRepository.findByNameContainingIgnoreCaseAndRole(name, role, pageable);
+        } else if (email != null && role != null) {
+            return userRepository.findByEmailContainingIgnoreCaseAndRole(email, role, pageable);
+        } else if (name != null) {
+            return userRepository.findByNameContainingIgnoreCase(name, pageable);
+        } else if (email != null) {
+            return userRepository.findByEmailContainingIgnoreCase(email, pageable);
         } else if (role != null) {
             return userRepository.findByRole(role, pageable);
         }
