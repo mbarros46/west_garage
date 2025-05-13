@@ -1,70 +1,69 @@
-package com.westgarage.backend.config;
+package br.com.fiap.fin_money_api.config;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private AuthFilter authFilter;
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf
-                .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**"))
-                .disable()
-            )
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers(new AntPathRequestMatcher("/api/auth/**")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/ws/**")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        return http.authorizeHttpRequests(
+            auth -> auth
+                //.requestMatchers("/categories/**").hasRole("ADMIN")
+                .requestMatchers("/login/**").permitAll()
                 .anyRequest().authenticated()
-            );
-        
-        
-        http.headers(headers -> headers.disable());
-
-        
-        return http.build();
-    }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3001")); 
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-        configuration.setAllowCredentials(true); 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); 
-        return source;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        )
+        .csrf(csrf -> csrf.disable())
+        .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
+        .httpBasic(Customizer.withDefaults())
+        .build();
     }
     
+    // @Bean
+    // UserDetailsService userDetailsService(){
+    //     var users = List.of(
+    //         User
+    //             .withUsername("joao")
+    //             .password("$2a$12$1DLNWZDzr4xwa.hhL1Y6Run9t8q2dc2vw54QwUh9fnxW3cy5B8z1q")
+    //             .roles("ADMIN")
+    //             .build(),
+    //         User
+    //             .withUsername("maria")
+    //             .password("$2a$12$OyjhEIaHF.3/AxaNW.G.K.Zu.Pzv.B7.v9YPjXC6jm7svEhTE1Tcq")
+    //             .roles("USER")
+    //             .build()
+
+
+    //     );
+    //     return new InMemoryUserDetailsManager(users);
+    // }
+
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
-} 
+
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
+        return config.getAuthenticationManager();
+    }
+
+}
