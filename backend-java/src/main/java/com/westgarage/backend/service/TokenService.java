@@ -19,22 +19,23 @@ public class TokenService {
     private Instant expiresAt = LocalDateTime.now().plusDays(1).toInstant(ZoneOffset.ofHours(-3));
     private Algorithm algorithm = Algorithm.HMAC256("secret");
 
-    public Token createToken(User user) {
+    public Token createToken(User user){
         String jwt = JWT.create()
-                .withSubject(user.getId().toString())
-                .withClaim("email", user.getEmail())
-                .withExpiresAt(expiresAt)
-                .sign(algorithm);
+            .withSubject(user.getId().toString())
+            .withClaim("email", user.getEmail())
+            .withExpiresAt(expiresAt)
+            .sign(algorithm);
 
         return new Token(jwt, user.getEmail());
     }
 
-    public User getUserFromToken(String token) {
+    public User getUserFromToken(String token){
         DecodedJWT verifiedToken = JWT.require(algorithm).build().verify(token);
 
         return User.builder()
-                .id(Long.valueOf(verifiedToken.getSubject()))
+                .id(Long.valueOf( verifiedToken.getSubject() ))
                 .email(verifiedToken.getClaim("email").asString())
                 .build();
     }
+
 }

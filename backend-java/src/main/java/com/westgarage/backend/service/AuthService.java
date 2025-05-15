@@ -60,7 +60,7 @@ public class AuthService {
 
     @CacheEvict(value = "users", allEntries = true)
     public void clearUserCache() {
-       
+        // Método para limpar o cache de usuários
     }
 
     private UserDTO convertToDTO(User user) {
