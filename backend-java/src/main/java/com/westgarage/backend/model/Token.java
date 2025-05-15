@@ -1,4 +1,4 @@
-package br.com.fiap.fin_money_api.model;
+package com.westgarage.backend.model;
 
 public record Token(
     String token,

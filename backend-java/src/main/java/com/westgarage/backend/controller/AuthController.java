@@ -1,18 +1,20 @@
-package br.com.fiap.fin_money_api.controller;
+package com.westgarage.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.fin_money_api.model.Credentials;
-import br.com.fiap.fin_money_api.model.Token;
-import br.com.fiap.fin_money_api.model.User;
-import br.com.fiap.fin_money_api.service.TokenService;
+import com.westgarage.backend.model.Credentials;
+import com.westgarage.backend.model.Token;
+import com.westgarage.backend.model.User;
+import com.westgarage.backend.service.TokenService;
 
 @RestController
+@RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
