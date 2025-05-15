@@ -46,3 +46,4 @@ public class AuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+// Define a estrutura do token retornado ao usuário

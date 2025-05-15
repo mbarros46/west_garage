@@ -1,3 +1,4 @@
+//Recebe as credenciais e retorna o token JWT
 package com.westgarage.backend.controller;
 
 import com.westgarage.backend.model.Credentials;

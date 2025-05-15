@@ -1,3 +1,4 @@
+// Gera e valida o token JWT usando Auth0 (java-jwt)
 package com.westgarage.backend.service;
 
 import java.time.Instant;
