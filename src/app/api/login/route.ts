@@ -1,5 +1,16 @@
 import { NextResponse } from 'next/server';
+import { generateToken } from '@/app/utils/jwt';
+import bcrypt from 'bcryptjs';
 
+// Simulated user database - In a real application, this would be in a database
+const users = [
+  {
+    id: '1',
+    email: 'test@example.com',
+    // Password: 'password123'
+    password: '$2a$10$E4UeR7s3L5bYc8fG9hK0mO.yZ.x/X1Q2.G3H4I5J6K7L8M9N0oP'
+  }
+];
 
 export async function POST(request: Request) {
   try {
@@ -14,22 +25,49 @@ export async function POST(request: Request) {
       );
     }
 
-    // Simulação de autenticação
-    // Aqui você consultaria seu banco de dados para verificar as credenciais do usuário.
-    // Exemplo:
-    // const user = await findUserByEmail(email);
-    // if (!user || !verifyPassword(password, user.password)) {
-    //    return NextResponse.json({ error: 'Credenciais inválidas.' }, { status: 401 });
-    // }
-
-    return NextResponse.json(
-      { message: 'Login realizado com sucesso!' },
-      { status: 200 }
-    );
-    } catch {
-        return NextResponse.json(
-        { error: 'Erro interno do servidor.' },
-        { status: 500 }
-        );
+    // Find user by email
+    const user = users.find(u => u.email === email);
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Credenciais inválidas.' },
+        { status: 401 }
+      );
     }
+
+    // Verify password
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return NextResponse.json(
+        { error: 'Credenciais inválidas.' },
+        { status: 401 }
+      );
+    }
+
+    // Generate JWT token
+    const token = generateToken(user.id);
+
+    // Return success with token
+    return NextResponse.json(
+      { 
+        message: 'Login realizado com sucesso!',
+        token,
+        user: {
+          id: user.id,
+          email: user.email
+        }
+      },
+      { 
+        status: 200,
+        headers: {
+          'Set-Cookie': `token=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400`
+        }
+      }
+    );
+  } catch (error) {
+    console.error('Login error:', error);
+    return NextResponse.json(
+      { error: 'Erro interno do servidor.' },
+      { status: 500 }
+    );
+  }
 }
