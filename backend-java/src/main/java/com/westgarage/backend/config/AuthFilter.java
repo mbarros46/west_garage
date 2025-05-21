@@ -23,6 +23,16 @@ public class AuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
+        String path = request.getRequestURI();
+        System.out.println("🔎 PATH: " + path);  // Log visual no terminal
+
+        // Ignora autenticação para rotas públicas
+        if (path.contains("/login") || path.contains("/api/users/dev/users")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         var header = request.getHeader("Authorization");
         if (header == null) {
             filterChain.doFilter(request, response);
@@ -32,7 +42,7 @@ public class AuthFilter extends OncePerRequestFilter {
         if (!header.startsWith("Bearer ")) {
             response.setStatus(401);
             response.getWriter().write("""
-                {"message": "Authorization deve iniciar com Bearer"}  
+                {"message": "Authorization deve iniciar com Bearer"}
             """);
             return;
         }
@@ -46,4 +56,3 @@ public class AuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
-// Define a estrutura do token retornado ao usuário

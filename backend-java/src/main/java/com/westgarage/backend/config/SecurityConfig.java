@@ -1,8 +1,6 @@
 // Configura o Spring Security 
 package com.westgarage.backend.config;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,25 +20,25 @@ public class SecurityConfig {
     private AuthFilter authFilter;
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(
-            auth -> auth
-                .requestMatchers("/login/**").permitAll()
-                .anyRequest().authenticated()
-        )
-        .csrf(csrf -> csrf.disable())
-        .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-        .httpBasic(Customizer.withDefaults())
-        .build();
+                auth -> auth
+                    .requestMatchers("/login/**", "/api/users/dev/users").permitAll()
+                    .anyRequest().authenticated()
+            )
+            .csrf(csrf -> csrf.disable())
+            .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
+            .httpBasic(Customizer.withDefaults())
+            .build();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 }
